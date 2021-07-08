@@ -1,7 +1,9 @@
-package me.vlasoff.letstell_tz
+package me.vlasoff.letstell_tz.presentation.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import me.vlasoff.letstell_tz.R
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
