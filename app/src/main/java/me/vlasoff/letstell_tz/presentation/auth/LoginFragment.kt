@@ -50,7 +50,7 @@ class LoginFragment : Fragment() {
 
         val manager = SessionManager(requireContext())
 
-        if (manager.getAuthToken() != null){
+        if (manager.getAuthToken() != null) {
             findNavController().navigate(R.id.action_loginFragment_to_mainFragment)
         }
 
@@ -60,38 +60,44 @@ class LoginFragment : Fragment() {
             val password = binding.password.editText?.text.toString()
             Log.d("EM&PW", "$email\n$password")
 
-            if (binding.email.editText?.text.toString() == "") {
-                binding.email.editText?.error = "Field must be filled"
-            }
-            if (binding.password.editText?.text.toString() == "") {
-                binding.password.editText?.error = "Field must be filled"
-            }
-            viewModel.login(LoginRequest(email, password)).observe(requireActivity()) {
-                it?.let { resource ->
-                    when (resource.status) {
-                        Status.SUCCESS -> {
-
-                            findNavController().navigate(R.id.action_loginFragment_to_mainFragment,
-                                resource.data?.let { loginResponse ->
-                                    MainFragmentArgs(
-                                        loginResponse.body.user.email,
-                                        loginResponse.body.access_token
-                                    ).toBundle()
+            // проверка полей на пустоту
+            when {
+                binding.email.editText?.text.toString() == "" -> {
+                    binding.email.editText?.error = "Field must be filled"
+                }
+                binding.password.editText?.text.toString() == "" -> {
+                    binding.password.editText?.error = "Field must be filled"
+                }
+                // если поля заполнены делаем запрос
+                else -> {
+                    viewModel.login(LoginRequest(email, password)).observe(requireActivity()) {
+                        it?.let { resource ->
+                            when (resource.status) {
+                                Status.SUCCESS -> {
+                                    // переходим если всё ок
+                                    findNavController().navigate(R.id.action_loginFragment_to_mainFragment,
+                                        resource.data?.let { loginResponse ->
+                                            MainFragmentArgs(
+                                                loginResponse.body.user.email,
+                                                loginResponse.body.access_token
+                                            ).toBundle()
+                                        }
+                                    )
                                 }
-                            )
-                        }
-                        Status.ERROR -> {
-                            Toast.makeText(
-                                requireContext(),
-                                "Email or password is incorrect!",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                                // сообщаем если косяк
+                                Status.ERROR -> {
+                                    Toast.makeText(
+                                        requireContext(),
+                                        "Email or password is incorrect!",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+                            }
                         }
                     }
+
                 }
             }
-
-
         }
 
     }

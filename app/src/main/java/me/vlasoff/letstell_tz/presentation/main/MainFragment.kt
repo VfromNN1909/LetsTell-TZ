@@ -1,20 +1,19 @@
 package me.vlasoff.letstell_tz.presentation.main
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import me.vlasoff.letstell_tz.R
 import me.vlasoff.letstell_tz.data.remote.Status
 import me.vlasoff.letstell_tz.databinding.FragmentMainBinding
-import me.vlasoff.letstell_tz.presentation.auth.AuthActivity
 import me.vlasoff.letstell_tz.utils.SessionManager
 
 @AndroidEntryPoint
@@ -35,10 +34,15 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val navHostFragment = NavHostFragment.findNavController(this)
+
         val args = MainFragmentArgs.fromBundle(requireArguments())
 
         val token = args.accessToken
 
+        // вспомогательный класс для работы с SharedPreferences
+        // куда мы в свою очередь сохраняем token
+        // для автоматического входа при авторизации
         val manager = SessionManager(requireContext())
         manager.saveAuthToken(token)
 
@@ -52,13 +56,15 @@ class MainFragment : Fragment() {
                         }
                         Status.ERROR -> {
                             Toast.makeText(requireContext(), "Ops..something went wrong", Toast.LENGTH_SHORT).show()
-
                         }
                     }
                 }
             }
-            val intent = Intent(requireContext(), AuthActivity::class.java)
-            startActivity(intent)
+            // оно не хочет работать, чтобы я не делал
+            // это единственный косяк
+            // все запросы проходят, не работает единственный переход
+            // не удивлюсь, если ошибка очень простая и я просто затупил
+            findNavController().navigate(R.id.action_mainFragment2_to_loginFragment3)
         }
     }
 
