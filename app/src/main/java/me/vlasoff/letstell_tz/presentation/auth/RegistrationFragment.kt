@@ -5,9 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import dagger.hilt.android.AndroidEntryPoint
 import me.vlasoff.letstell_tz.R
 
-
+@AndroidEntryPoint
 class RegistrationFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

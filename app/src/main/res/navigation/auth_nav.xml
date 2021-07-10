@@ -11,12 +11,24 @@
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
-            android:id="@+id/action_loginFragment_to_mainActivity"
-            app:destination="@id/mainActivity" />
+            android:id="@+id/action_loginFragment_to_mainScreenFragment2"
+            app:destination="@id/mainScreenFragment2" >
+            <argument
+                android:name="loginArgs"
+                android:defaultValue='LoginResponse("","")' />
+        </action>
     </fragment>
-    <activity
-        android:id="@+id/mainActivity"
-        android:name="me.vlasoff.letstell_tz.presentation.main.MainActivity"
-        android:label="activity_main"
-        tools:layout="@layout/activity_main" />
+    <fragment
+        android:id="@+id/mainScreenFragment2"
+        android:name="me.vlasoff.letstell_tz.presentation.main.MainScreenFragment"
+        android:label="fragment_main_screen"
+        tools:layout="@layout/fragment_main_screen" >
+        <argument
+            android:name="email"
+            app:argType="string" />
+        <argument
+            android:name="access_token"
+            app:argType="string" />
+    </fragment>
+
 </navigation>

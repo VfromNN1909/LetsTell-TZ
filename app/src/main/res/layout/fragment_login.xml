@@ -17,7 +17,7 @@
             android:layout_height="180dp"
             android:layout_marginTop="100dp"
             android:backgroundTint="@color/logo_bg"
-            android:src="@drawable/ic_full_logo"
+            app:srcCompat="@drawable/ic_full_logo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -62,6 +62,7 @@
             android:layout_marginTop="35dp"
             android:layout_marginEnd="30dp"
             android:hint="Email"
+            app:errorEnabled="false"
             app:boxBackgroundColor="@color/white"
             app:boxCornerRadiusBottomEnd="20dp"
             app:boxCornerRadiusBottomStart="20dp"
@@ -84,9 +85,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="30dp"
             android:hint="Password"
+            app:errorEnabled="false"
             app:boxBackgroundColor="@color/white"
             app:boxCornerRadiusBottomEnd="20dp"
             app:boxCornerRadiusBottomStart="20dp"
@@ -104,6 +105,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_login"
             android:layout_width="0dp"
             android:layout_height="60dp"
             android:layout_marginStart="30dp"
