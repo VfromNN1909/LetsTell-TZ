@@ -1,14 +1,13 @@
 package me.vlasoff.letstell_tz.di
 
-import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import me.vlasoff.letstell_tz.data.remote.ApiService
 import me.vlasoff.letstell_tz.data.repos.AuthRepository
 import me.vlasoff.letstell_tz.domain.usecases.LoginUseCase
+import me.vlasoff.letstell_tz.domain.usecases.LogoutUseCase
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -54,4 +53,7 @@ object ApiModule {
 
     @Provides
     fun providesLoginUseCase(repository: AuthRepository) = LoginUseCase(repository)
+
+    @Provides
+    fun providesLogoutUseCase(repository: AuthRepository) = LogoutUseCase(repository)
 }
