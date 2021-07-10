@@ -25,10 +25,12 @@
         tools:layout="@layout/fragment_main_screen" >
         <argument
             android:name="email"
-            app:argType="string" />
+            app:argType="string"
+            android:defaultValue=""/>
         <argument
             android:name="access_token"
-            app:argType="string" />
+            app:argType="string"
+            android:defaultValue=""/>
     </fragment>
 
 </navigation>

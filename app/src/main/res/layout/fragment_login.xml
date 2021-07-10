@@ -88,6 +88,7 @@
             android:layout_marginEnd="30dp"
             android:hint="Password"
             app:errorEnabled="false"
+            android:layout_marginTop="8dp"
             app:boxBackgroundColor="@color/white"
             app:boxCornerRadiusBottomEnd="20dp"
             app:boxCornerRadiusBottomStart="20dp"

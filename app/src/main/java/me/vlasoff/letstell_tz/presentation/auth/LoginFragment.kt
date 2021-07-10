@@ -50,11 +50,11 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        val manager = SessionManager(requireContext())
+        val manager = SessionManager(requireContext())
 
-//        if (manager.getAuthToken() != null){
-//            findNavController().navigate(R.id.action_loginFragment_to_mainScreenFragment2)
-//        }
+        if (manager.getAuthToken() != null){
+            findNavController().navigate(R.id.action_loginFragment_to_mainScreenFragment2)
+        }
 
         binding.buttonLogin.setOnClickListener {
 
@@ -72,11 +72,7 @@ class LoginFragment : Fragment() {
                 it?.let { resource ->
                     when (resource.status) {
                         Status.SUCCESS -> {
-//                            resource.data?.body?.access_token?.let { token ->
-//                                manager.saveAuthToken(
-//                                    token
-//                                )
-//                            }
+
                             findNavController().navigate(R.id.action_loginFragment_to_mainScreenFragment2,
                                 resource.data?.let { loginResponse ->
                                     MainScreenFragmentArgs(
